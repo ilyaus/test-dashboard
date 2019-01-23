@@ -30,7 +30,7 @@
     </div>
 
   <!-- Charts -->
-  <chart-container />
+  <bar-chart :width="width" />
 
   </div>
 

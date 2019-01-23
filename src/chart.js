@@ -1,8 +1,8 @@
-import { Line } from 'vue-chartjs'
+import { Bar } from 'vue-chartjs'
 
 export default {
 
-  extends: Line,
+  extends: Bar,
   props: {
     chartData: {
       type: Object,
@@ -11,9 +11,20 @@ export default {
     chartOptions: {
       type: Object,
       default: null
-    }
+    },
+    width: 400
   },
   mounted () {
-    this.renderChart(this.chartData, this.chartOptions)
+    //this.renderChart(this.chartData, this.chartOptions)
+    this.renderChart({
+      labels: ['January', 'February'],
+      datasets: [
+        {
+          label: 'GitHub Commits',
+          backgroundColor: '#f030203',
+          data: [40, 23]
+        }
+      ]
+    })
   }
 }
