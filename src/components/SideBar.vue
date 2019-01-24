@@ -15,25 +15,25 @@
           <span>Layer Operations</span>
         </h6>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="#" @click="menuClick('stream')">
             <span data-feather="bar-chart-2"></span>
             Stream Layer
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="#" @click="menuClick('volatile')">
             <span data-feather="bar-chart-2"></span>
             Volatile Layer
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="#" @click="menuClick('versioned')">
             <span data-feather="bar-chart-2"></span>
             Versioned Layer
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="#" @mouseup="menuClick('index')">
             <span data-feather="bar-chart-2"></span>
             Index Layer
           </a>
@@ -42,3 +42,14 @@
     </div>
   </nav>
 </template>
+
+<script>
+export default {
+  methods: {
+    menuClick (chartType) {
+      console.log(chartType)
+      this.$emit('updateTitle', chartType)
+    }
+  }
+}
+</script>

@@ -1,31 +1,33 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="chart-title">{{ title }}</div>
+      <div class="chart-title">{{ containerTitle }}</div>
     </div>
     <div class="row">
-      <div class="col">
-        <layer-creation-chart/>
-      </div>
-      <div class="col">
-        <layer-creation-chart/>
-      </div>
+      <layer-creation-chart v-for="index in 2" :key="index" :chartId="index"/>
     </div>
   </div>
 </template>
 
 <script>
-import LayerCreationChart from "./LayerCreationChart.vue";
+import LayerCreationChart from './LayerCreationChart.vue'
 
 export default {
-  name: "LayerCreationContainer",
-  data: function() {
+  name: 'LayerCreationContainer',
+  props: {
+    containerTitle: {
+      type: String,
+      default: 'Stream Layer'
+    }
+  },
+  data () {
     return {
-      title: "Stream Layer"
-    };
+      title: 'Stream Layer',
+      index: 1
+    }
   },
   components: {
     layerCreationChart: LayerCreationChart
   }
-};
+}
 </script>

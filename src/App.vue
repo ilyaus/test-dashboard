@@ -2,11 +2,11 @@
   <div id="app">
     <nav-bar/>
     <div class="container-fluid">
-      <side-bar/>
+      <side-bar @updateTitle="updateCurrentTitle($event)"/>
       <div class="row">
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
           <page-header/>
-          <layer-creation-container/>
+          <layer-creation-container :containerTitle="currentTitle"/>
         </main>
       </div>
     </div>
@@ -20,13 +20,20 @@ import SideBar from './components/SideBar.vue'
 import LayerCreationContainer from './components/LayerCreationContainer.vue'
 
 export default {
+  props: {
+    containerTitle: {
+      type: String,
+      default: 'Stream Layer'
+    }
+  },
   data () {
     return {
       server_data: {
         'perf_data': {},
         'user_name': 'Sample user name',
         'email': 'Sample user email'
-      }
+      },
+      currentTitle: 'Stream Layer'
     }
   },
   components: {
@@ -44,6 +51,14 @@ export default {
           console.log(response.data)
           this.server_data.perf_data = response.data
         })
+    },
+    updateCurrentTitle (title) {
+      this.currentTitle = title.charAt(0).toUpperCase() + title.slice(1) + ' ' + 'Layer'
+    }
+  },
+  watch: {
+    currentTitle () {
+      console.log('Updating title to ' + this.currentTitle)
     }
   },
   mounted () {
