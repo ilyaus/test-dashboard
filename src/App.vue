@@ -1,42 +1,23 @@
 <template>
   <div id="app">
-    <!--
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-    -->
-    <div class="container">
+    <nav-bar/>
+    <div class="container-fluid">
+      <side-bar/>
       <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="" class="username">Username</label>
-            <input type="text" class="form-control" v-model="server_data.user_name">
-          </div>
-          <div class="form-group">
-            <label for="" class="email">EMail</label>
-            <input type="text" class="form-control" v-model="server_data.email">
-          </div>
-          <button class="btn btn-primary" @click="submit">Submit</button>
-
-          <ul class="list-group">
-            <li class="list-group-item" v-for="(u, index) in server_data.perf_data.ramps" :key=index>
-              {{u.throughputMBps}} {{index}}
-            </li>
-          </ul>
-        </div>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          <page-header/>
+          <layer-creation-container/>
+        </main>
       </div>
     </div>
-
-  <!-- Charts -->
-  <bar-chart :width="width" />
-
   </div>
-
 </template>
 
 <script>
+import NavBar from './components/NavBar.vue'
+import PageHeader from './components/PageHeader.vue'
+import SideBar from './components/SideBar.vue'
+import LayerCreationContainer from './components/LayerCreationContainer.vue'
 
 export default {
   data () {
@@ -48,6 +29,13 @@ export default {
       }
     }
   },
+  components: {
+    navBar: NavBar,
+    pageHeader: PageHeader,
+    sideBar: SideBar,
+    layerCreationContainer: LayerCreationContainer
+  },
+
   methods: {
     submit () {
       console.log('Submitting data')
@@ -57,28 +45,15 @@ export default {
           this.server_data.perf_data = response.data
         })
     }
+  },
+  mounted () {
+    const dashboardScript = document.createElement('script')
+    dashboardScript.setAttribute('src', 'js/dashboard.js')
+    document.head.appendChild(dashboardScript)
   }
 }
+
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
