@@ -4,7 +4,7 @@
       <div class="chart-title">{{ containerTitle }}</div>
     </div>
     <div class="row">
-      <layer-creation-chart v-for="index in 2" :key="index" :chartId="index"/>
+      <layer-creation-chart v-for="index in 4" :key="index" :chartId="index"/>
     </div>
   </div>
 </template>
@@ -31,3 +31,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  div {
+    background-color: azure;
+    margin: 2px;
+  }
+</style>

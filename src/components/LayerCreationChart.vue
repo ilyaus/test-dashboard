@@ -1,6 +1,6 @@
 <template>
-  <div class="col">
-    <canvas class="my-4 w-100" :id="getChartId()"></canvas>
+  <div class="col-lg-2">
+    <canvas :id="getChartId()"></canvas>
   </div>
 </template>
 
