@@ -45,10 +45,10 @@ export default {
 
   methods: {
     submit () {
-      console.log('Submitting data')
+      // console.log('Submitting data')
       this.$http.get('http://10.126.64.47:9001/test/Streaming32MBps_1KbMsg_Stable/result')
         .then(response => {
-          console.log(response.data)
+          // console.log(response.data)
           this.server_data.perf_data = response.data
         })
     },
@@ -58,7 +58,7 @@ export default {
   },
   watch: {
     currentTitle () {
-      console.log('Updating title to ' + this.currentTitle)
+      // console.log('Updating title to ' + this.currentTitle)
     }
   },
   mounted () {
